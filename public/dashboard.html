@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en" data-color-scheme="light">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MediCare Portal Dashboard</title>
+  <link href="../css/dashboard.css" rel="stylesheet">
+  <link rel="icon" type="image/x-icon" href="../favicon/s.svg">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+</head>
+
+<body>
+  <div class="page-container">
+    <header>
+      <div class="flex items-center gap-12">
+        <i class="fa-solid fa-heart-pulse fa-2x text-primary"></i>
+        <span>MediCare Portal</span>
+      </div>
+      <nav>
+        <button data-target="dashboard-section" class="btn btn--secondary active">Dashboard</button>
+        <button data-target="patients-section" class="btn btn--secondary">Patients</button>
+        <button data-target="doctors-section" class="btn btn--secondary">Doctors</button>
+        <button data-target="appointments-section" class="btn btn--secondary">Appointments</button>
+        <button data-target="billing-section" class="btn btn--secondary">Billing</button>
+        <button data-target="records-section" class="btn btn--secondary">Records</button>
+        <button data-target="telehealth-section" class="btn btn--secondary">TeleHealth</button>
+        <button data-target="about-us-section" class="btn btn--secondary">About Us</button>
+      </nav>
+    </header>
+
+    <main class="container py-24">
+      <div id="dashboard-section" class="section is-active">
+        <h1>Dashboard Overview</h1>
+        <div class="card mb-24">
+          <div class="card__body flex items-center justify-between">
+            <div>
+              <h2>Welcome Back, Atharva B!</h2>
+              <p class="text-secondary m-0">Here's a snapshot of the hospital's activity today.</p>
+            </div>
+            <i class="fa-solid fa-chart-line fa-3x text-secondary" style="opacity: 0.5;"></i>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--space-20);">
+          <div class="card" style="background-color: var(--color-bg-1);">
+            <div class="card__body flex items-center gap-16">
+              <i class="fa-solid fa-users fa-2x" style="color: var(--color-primary);"></i>
+              <div>
+                <h3 class="text-secondary font-semibold">Total Patients</h3>
+                <span id="totalPatientsStat" class="font-bold text-3xl">0</span>
+              </div>
+            </div>
+          </div>
+          <div class="card" style="background-color: var(--color-bg-3);">
+            <div class="card__body flex items-center gap-16">
+              <i class="fa-solid fa-user-doctor fa-2x" style="color: var(--color-success);"></i>
+              <div>
+                <h3 class="text-secondary font-semibold">Total Doctors</h3>
+                <span id="totalDoctorsStat" class="font-bold text-3xl">0</span>
+              </div>
+            </div>
+          </div>
+          <div class="card" style="background-color: var(--color-bg-6);">
+            <div class="card__body flex items-center gap-16">
+              <i class="fa-solid fa-calendar-check fa-2x" style="color: var(--color-warning);"></i>
+              <div>
+                <h3 class="text-secondary font-semibold">Appointments</h3>
+                <span id="totalAppointmentsStat" class="font-bold text-3xl">0</span>
+              </div>
+            </div>
+          </div>
+          <div class="card" style="background-color: var(--color-bg-8);">
+            <div class="card__body flex items-center gap-16">
+              <i class="fa-solid fa-bed-pulse fa-2x" style="color: var(--color-info);"></i>
+              <div>
+                <h3 class="text-secondary font-semibold">Beds Available</h3>
+                <span class="font-bold text-3xl">1050</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="patients-section" class="section">
+        <div class="flex justify-between items-center mb-24">
+          <h1>Patient Management</h1>
+          <button id="showPatientFormBtn" class="btn btn--primary"><i class="fa-solid fa-plus mr-8"></i> Add
+            Patient</button>
+        </div>
+        <div id="patientFormContainer" class="card" style="display:none; margin-bottom: 24px;">
+          <form id="patientForm" class="card__body">
+            <h2 class="mb-16">New Patient Details</h2>
+            <div
+              style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--space-16);">
+              <div class="form-group"><label class="form-label" for="pName">Name</label><input type="text" id="pName"
+                  class="form-control" placeholder="Full Name" required></div>
+              <div class="form-group"><label class="form-label" for="pAge">Age</label><input type="number" id="pAge"
+                  class="form-control" placeholder="Age" required></div>
+              <div class="form-group"><label class="form-label" for="pGender">Gender</label><select id="pGender"
+                  class="form-control" required>
+                  <option value="">Select Gender</option>
+                  <option>Male</option>
+                  <option>Female</option>
+                  <option>Other</option>
+                </select></div>
+              <div class="form-group"><label class="form-label" for="pPhone">Phone</label><input type="text" id="pPhone"
+                  class="form-control" placeholder="Phone Number" required></div>
+              <div class="form-group"><label class="form-label" for="pBN">Bed Number</label><input type="text" id="pBN"
+                  class="form-control" placeholder="e.g., 702"></div>
+              <div class="form-group" style="grid-column: 1 / -1;"><label class="form-label"
+                  for="pReason">Diagnosis</label><input type="text" id="pReason" class="form-control"
+                  placeholder="Reason for Admission/Diagnosis"></div>
+              <div class="form-group" style="grid-column: 1 / -1;"><label class="form-label" for="pNotes">Internal
+                  Notes</label><textarea id="pNotes" class="form-control"
+                  placeholder="Add any internal notes here..."></textarea></div>
+              <div class="form-group" style="grid-column: 1 / -1;"><label class="form-label" for="pImage">Medical Report
+                  (Image/PDF)</label><input type="file" id="pImage" class="form-control"
+                  accept="image/*,application/pdf,.doc,.docx"></div>
+            </div>
+            <div class="mt-16"><button type="submit" id="addPatientBtn" class="btn btn--primary btn--full-width">Save
+                Patient</button></div>
+          </form>
+        </div>
+        <div class="card">
+          <div class="card__body p-0">
+            <table id="patientTable" style="width:100%;">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Age</th>
+                  <th>Gender</th>
+                  <th>Phone</th>
+                  <th>Bed No.</th>
+                  <th>Diagnosis</th>
+                  <th>Report</th>
+                  <th>QR Code</th>
+                </tr>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div id="doctors-section" class="section">
+        <div class="flex justify-between items-center mb-24">
+          <h1>Doctor Directory</h1>
+          <button id="showDoctorFormBtn" class="btn btn--primary"><i class="fa-solid fa-plus mr-8"></i> Add
+            Doctor</button>
+        </div>
+        <div id="doctorFormContainer" class="card" style="display:none; margin-bottom: 24px;">
+          <form id="doctorForm" class="card__body">
+            <h2 class="mb-16">New Doctor Profile</h2>
+            <div
+              style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--space-16);">
+              <div class="form-group"><label class="form-label" for="dName">Doctor Name</label><input type="text"
+                  id="dName" class="form-control" placeholder="Dr. Full Name" required></div>
+              <div class="form-group"><label class="form-label" for="dSpecialization">Specialization</label><input
+                  type="text" id="dSpecialization" class="form-control" placeholder="e.g., Cardiologist" required></div>
+              <div class="form-group"><label class="form-label" for="dPhone">Phone Number</label><input type="text"
+                  id="dPhone" class="form-control" placeholder="Phone Number" required></div>
+              <div class="form-group"><label class="form-label" for="dEmail">Email</label><input type="email"
+                  id="dEmail" class="form-control" placeholder="Email Address"></div>
+              <div class="form-group"><label class="form-label" for="dExperience">Years of Experience</label><input
+                  type="number" id="dExperience" class="form-control" placeholder="e.g., 10"></div>
+              <div class="form-group"><label class="form-label" for="dAvailability">Availability</label><input
+                  type="text" id="dAvailability" class="form-control" placeholder="e.g., Mon-Fri, 9am-5pm"></div>
+            </div>
+            <div class="mt-16"><button type="submit" id="addDoctorBtn" class="btn btn--primary btn--full-width">Save
+                Doctor</button></div>
+          </form>
+        </div>
+        <div class="card">
+          <div class="card__body p-0">
+            <table id="doctorTable">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Specialization</th>
+                  <th>Phone</th>
+                  <th>Email</th>
+                  <th>Experience</th>
+                  <th>Availability</th>
+                </tr>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div id="appointments-section" class="section">
+        <div class="flex justify-between items-center mb-24">
+          <h1>Appointments</h1>
+          <button id="showAppointmentFormBtn" class="btn btn--primary"><i class="fa-solid fa-plus mr-8"></i> Add
+            Appointment</button>
+        </div>
+        <div id="appointmentFormContainer" class="card" style="display:none; margin-bottom: 24px;">
+          <form id="appointmentForm" class="card__body">
+            <h2 class="mb-16">Schedule New Appointment</h2>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-16);">
+              <div class="form-group"><label class="form-label" for="aPatient">Patient</label><select id="aPatient"
+                  class="form-control" required>
+                  <option value="">Select Patient</option>
+                </select></div>
+              <div class="form-group"><label class="form-label" for="aDoctor">Doctor</label><select id="aDoctor"
+                  class="form-control" required>
+                  <option value="">Select Doctor</option>
+                </select></div>
+              <div class="form-group"><label class="form-label" for="aDate">Date</label><input type="date" id="aDate"
+                  class="form-control" required></div>
+              <div class="form-group"><label class="form-label" for="aTime">Time</label><input type="time" id="aTime"
+                  class="form-control" required></div>
+              <div class="form-group" style="grid-column: 1 / -1;"><label class="form-label" for="aReason">Reason for
+                  Visit</label><textarea id="aReason" class="form-control" placeholder="Enter reason..."></textarea>
+              </div>
+            </div>
+            <div class="mt-16"><button type="submit" id="addAppointmentBtn"
+                class="btn btn--primary btn--full-width">Schedule Appointment</button></div>
+          </form>
+        </div>
+        <div class="card">
+          <div class="card__body p-0">
+            <table id="appointmentTable">
+              <thead>
+                <tr>
+                  <th>Patient</th>
+                  <th>Doctor</th>
+                  <th>Date</th>
+                  <th>Time</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div id="billing-section" class="section">
+        <h1>Patient Billing</h1>
+        <p class="text-secondary mb-24">Manage patient billing and payments. New patients are added here automatically
+          upon admission.</p>
+        <div class="card">
+          <div class="card__body p-0">
+            <table id="billingTable">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Bed No.</th>
+                  <th>Due Amount</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div id="records-section" class="section">
+        <h1>Medical Records</h1>
+        <div id="recordsContainer">
+        </div>
+      </div>
+      
+      <div id="telehealth-section" class="section">
+        <h1>TeleHealth Appointments</h1>
+        <p class="text-secondary mb-24">Conduct and manage telehealth appointments with patients remotely.</p>
+        <div class="card">
+          <div class="card__body
+            p-0">
+            <table id="telehealthTable">
+              <thead> 
+                <tr>
+                  <th>Patient Name</th>
+                  <th>Doctor Name</th>
+                  <th>Appointment Date</th>
+                  <th>Appointment Time</th>
+                  <th>Meeting Link</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+           
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div id="about-us-section" class="section">
+        <h1>About MediCare</h1>
+        <div class="card mb-24">
+          <div class="card__body">
+            <h2 class="mb-16">Our Mission</h2>
+            <p>This MediCare Portal is a comprehensive digital solution designed to streamline hospital operations,
+              manage patient records, appointments, and doctor information efficiently and securely.</p>
+            <p class="text-secondary">Our mission is to leverage technology to provide better healthcare outcomes and a
+              seamless experience for both patients and medical professionals.</p>
+
+            <h2 class="mt-24 mb-16">Our Core Values</h2>
+            <div style="display: flex; gap: var(--space-24); flex-wrap: wrap;">
+              <div class="flex items-center gap-12">
+                <i class="fa-solid fa-hospital-user fa-2x text-primary"></i>
+                <div>
+                  <h4 class="m-0">Patient-Centricity</h4>
+                  <p class="text-secondary m-0">Designing with the patient's experience as our top priority.</p>
+                </div>
+              </div>
+              <div class="flex items-center gap-12">
+                <i class="fa-solid fa-shield-halved fa-2x text-primary"></i>
+                <div>
+                  <h4 class="m-0">Security & Privacy</h4>
+                  <p class="text-secondary m-0">A commitment to protecting sensitive medical data.</p>
+                </div>
+              </div>
+              <div class="flex items-center gap-12">
+                <i class="fa-solid fa-lightbulb fa-2x text-primary"></i>
+                <div>
+                  <h4 class="m-0">Innovation</h4>
+                  <p class="text-secondary m-0">Using modern tech to solve healthcare challenges.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h2 class="mt-24 mb-16">Our Team</h2>
+        <div class="team-grid mb-24">
+          <div class="team-member">
+            <img src="../picture/1.jpeg" alt="Atharva Bhosale" class="profile-pic">
+            <h3>Atharva Bhosale</h3>
+            <p class="text-secondary">Enrollment No: 23211060006</p>
+            <p class="font-semibold text-primary">Backend Developer</p>
+            <p class="text-secondary text-sm">Atharva architected the core server-side logic and database integration.
+            </p>
+            <div class="social-links">
+              <a href="#" class="text-secondary"><i class="fab fa-linkedin"></i></a>
+              <a href="#" class="text-secondary"><i class="fab fa-github"></i></a>
+            </div>
+          </div>
+          <div class="team-member">
+            <img src="https://i.pravatar.cc/100?u=30" alt="Shrawani Ahire" class="profile-pic">
+            <h3>Shrawani Ahire</h3>
+            <p class="text-secondary">Enrollment No: 23211060299</p>
+            <p class="font-semibold text-primary">Backend Developer</p>
+            <p class="text-secondary text-sm">Shrawani focused on developing secure API endpoints and data management.
+            </p>
+            <div class="social-links">
+              <a href="#" class="text-secondary"><i class="fab fa-linkedin"></i></a>
+              <a href="#" class="text-secondary"><i class="fab fa-github"></i></a>
+            </div>
+          </div>
+          <div class="team-member">
+            <img src="https://i.pravatar.cc/100?u=105" alt="Mansi Karale" class="profile-pic">
+            <h3>Mansi Karale</h3>
+            <p class="text-secondary">Enrollment No: 23211060258</p>
+            <p class="font-semibold text-primary">Backend Developer</p>
+            <p class="text-secondary text-sm">Mansi was instrumental in implementing the appointment and billing logic.
+            </p>
+            <div class="social-links">
+              <a href="#" class="text-secondary"><i class="fab fa-linkedin"></i></a>
+              <a href="#" class="text-secondary"><i class="fab fa-github"></i></a>
+            </div>
+          </div>
+          <div class="team-member">
+            <img src="../picture/D.jpeg" alt="Dhanshri Sapkal" class="profile-pic">
+            <h3>Dhanshri Sapkal</h3>
+            <p class="text-secondary">Enrollment No: 23211060260</p>
+            <p class="font-semibold text-primary">Quality Assurance & Testing</p>
+            <p class="text-secondary text-sm">Dhanshri ensured the platform is reliable, secure, and bug-free.</p>
+            <div class="social-links">
+              <a href="#" class="text-secondary"><i class="fab fa-linkedin"></i></a>
+              <a href="#" class="text-secondary"><i class="fab fa-github"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <h2 class="mt-24 mb-16">Technology Stack</h2>
+        <div class="card">
+          <div class="card__body"
+            style="display: flex; justify-content: space-around; flex-wrap: wrap; gap: var(--space-20);">
+            <div class="text-center"><i class="fab fa-html5 fa-3x" style="color: #E34F26;"></i>
+              <p>HTML5</p>
+            </div>
+            <div class="text-center"><i class="fab fa-css3-alt fa-3x" style="color: #1572B6;"></i>
+              <p>CSS3</p>
+            </div>
+            <div class="text-center"><i class="fab fa-js-square fa-3x" style="color: #F7DF1E;"></i>
+              <p>JavaScript</p>
+            </div>
+            <div class="text-center"><i class="fab fa-node-js fa-3x" style="color: #339933;"></i>
+              <p>Node.js</p>
+            </div>
+            <div class="text-center"><i class="fas fa-database fa-3x" style="color: #4479A1;"></i>
+              <p>MySQL</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <div id="qrModal" class="modal">
+    <span class="close">&times;</span>
+    <div id="modal-content-container" class="modal-content"></div>
+    <div id="caption"></div>
+  </div>
+
+  <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+  <df-messenger intent="WELCOME" chat-title="MediCare Assistant" agent-id="34792116-7dcc-44b7-9d4a-60ac5b60b2b8"
+    language-code="en"></df-messenger>
+
+  <script src="https://cdn.jsdelivr.net/npm/qrcodejs/qrcode.min.js"></script>
+  <script src="../js/dashboard.js"></script>
+
+
+</body>
+
+</html>

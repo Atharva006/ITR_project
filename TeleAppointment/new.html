@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telehealth Portal</title>
+    <style>
+#local-video {
+    transform: scaleX(-1);
+}
+        body { font-family: sans-serif; background-color: #f0f4f8; text-align: center; }
+        h1 { color: #2c3e50; }
+        #video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            gap: 1rem;
+            max-width: 900px;
+            margin: 1rem auto;
+        }
+        video {
+            width: 100%;
+            height: auto;
+            border: 2px solid #3498db;
+            border-radius: 8px;
+            background-color: #000;
+        }
+        .video-container { text-align: center; }
+        #controls { margin-top: 1rem; }
+        input { padding: 8px; border-radius: 4px; border: 1px solid #ccc; }
+        button { padding: 8px 15px; background-color: #3498db; color: white; border: none; border-radius: 4px; cursor: pointer; }
+        button:hover { background-color: #2980b9; }
+        #my-id { font-weight: bold; color: #e74c3c; }
+    </style>
+</head>
+<body>
+
+    <h1>Telehealth Appointment</h1>
+    <p>Your Appointment ID is: <span id="my-id">loading...</span></p>
+    <p>Share this ID with the other person.</p>
+
+    <div id="video-grid">
+        <div class="video-container">
+            <h3>You</h3>
+            <video id="local-video" autoplay muted></video>
+        </div>
+        <div class="video-container">
+            <h3 id="remote-peer-title">Participant</h3>
+            <video id="remote-video" autoplay></video>
+        </div>
+    </div>
+
+    <div id="controls">
+        <input type="text" id="peer-id-input" placeholder="Enter Participant's ID">
+        <button id="call-btn">Call</button>
+    </div>
+
+    <script src="https://unpkg.com/peerjs@1.5.2/dist/peerjs.min.js"></script>
+    <script src="script.js"></script>
+
+</body>
+</html>
