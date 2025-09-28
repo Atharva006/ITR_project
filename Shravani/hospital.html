@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <title>Medicare Portal</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <header>
+    <div class="portal-title">Medicare Hospital</div>
+    <div class="nav-links">
+      <button onclick="showContent('home')">Home</button>
+      <button onclick="showContent('services')">Services</button>
+      <button onclick="showContent('about')">Academics</button>
+      <button onclick="showContent('contact')">Blogs</button>
+    </div>
+    <button class="menu-icon" onclick="toggleSidebar()">☰</button>
+  </header>
+
+  <div id="sidebar" class="sidebar">
+    <button onclick="toggleSidebar()" class="close-btn">❌</button>
+    <button onclick="showContent('home')">Home</button>
+    <button onclick="showContent('Emergency')">Emergency</button>
+    <button onclick="showContent('work with us')">Work With Us</button>
+    <button onclick="showContent('services')">Services</button>
+    <button onclick="showContent('gallery')">Gallery</button>
+    <button onclick="showContent('news')">News</button>
+    <button onclick="showContent('contact')">Contact</button>
+    <button onclick="showContent('about')">About us</button>
+  </div>
+  <div id="home-section">
+    <section class="hero-section">
+      <div class="hero-container">
+        <div class="hero-image">
+          <img src="C:\Users\HP\Downloads\New folder\doc.jpeg" alt="Doctor Image">
+        </div>
+        <div class="hero-text">
+          <h1>Welcome to <span class="highlight-hospital">Medicare Portal</span></h1>
+          <p>
+            Your trusted digital healthcare companion, <strong>Medicare</strong>, delivers
+            <span class="highlight-text">quality care with compassion</span>.
+            Our system provides <span class="highlight-text">seamless access</span> to doctors, patient records,
+            appointments, pharmacy services, and more — simplifying every step for patients, doctors, and staff.
+            At <strong>Medicare</strong>, <span class="highlight-text">your health is our priority</span>, bringing you
+            closer to better care with every click.
+          </p>
+          <div class="cta-button">
+            <a href="javascript:void(0);" onclick="showContent('services')">Explore Services</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="specialities">
+      <h2>Our Specialities</h2>
+      <div class="speciality-grid">
+
+        <div class="speciality-card">
+          <img src="C:\Users\HP\Downloads\New folder\neural.jpeg" alt="Neuro Sciences">
+          <h3>Neuro Sciences</h3>
+          <a onclick="openModal('neuroModal')">View More</a>
+        </div>
+
+        <div class="speciality-card">
+          <img src="C:\Users\HP\Downloads\New folder\cardiology.jpeg" alt="Cardiac Sciences">
+          <h3>Cardiac Sciences</h3>
+          <a onclick="openModal('cardiacModal')">View More</a>
+        </div>
+
+        <div class="speciality-card">
+          <img src="C:\Users\HP\Downloads\New folder\robotical.jpeg" alt="Robotic Surgery">
+          <h3>Robotic Surgery</h3>
+          <a onclick="openModal('roboticModal')">View More</a>
+        </div>
+
+        <div class="speciality-card">
+          <img src="C:\Users\HP\Downloads\New folder\ortho.jpeg" alt="Orthopaedics">
+          <h3>Orthopaedics</h3>
+          <a onclick="openModal('orthopedicModal')">View More</a>
+        </div>
+
+        <div class="speciality-card">
+          <img src="C:\Users\HP\Downloads\New folder\oncology'jpeg.png" alt="Oncology">
+          <h3>Oncology</h3>
+          <a onclick="openModal('oncologyModal')">View More</a>
+        </div>
+
+        <div class="speciality-card">
+          <img src="C:\Users\HP\Downloads\New folder\motherchild.jpeg" alt="Mother & Child Care">
+          <h3>Mother & Child Care</h3>
+          <a onclick="openModal('motherChildModal')">View More</a>
+        </div>
+
+      </div>
+    </section>
+
+    <div id="neuroModal" class="modal">
+      <div class="modal-content">
+        <h3>Neuro Sciences</h3>
+        <p>Our Neuro Sciences department provides complete care for brain, spine, and nervous system disorders using
+          advanced diagnostics and treatment methods.</p>
+        <button class="close-btn" onclick="closeModal('neuroModal')">Cancel</button>
+      </div>
+    </div>
+
+    <div id="cardiacModal" class="modal">
+      <div class="modal-content">
+        <h3>Cardiac Sciences</h3>
+        <p>Comprehensive heart care including preventive, interventional, and surgical treatments. Our team provides
+          advanced cardiac care with personalized plans.</p>
+        <button class="close-btn" onclick="closeModal('cardiacModal')">Cancel</button>
+      </div>
+    </div>
+
+    <div id="roboticModal" class="modal">
+      <div class="modal-content">
+        <h3>Robotic Surgery</h3>
+        <p>Advanced robotic-assisted surgery for precision, minimal scars, and faster recovery.</p>
+        <button class="close-btn" onclick="closeModal('roboticModal')">Cancel</button>
+      </div>
+    </div>
+
+
+    <div id="orthopedicModal" class="modal">
+      <div class="modal-content">
+        <h3>Orthopaedics</h3>
+        <p>Complete bone and joint care including trauma management, joint replacement, and sports injury treatment.</p>
+        <button class="close-btn" onclick="closeModal('orthopedicModal')">Cancel</button>
+      </div>
+    </div>
+
+    <div id="oncologyModal" class="modal">
+      <div class="modal-content">
+        <h3>Oncology</h3>
+        <p>Comprehensive cancer care using multidisciplinary approaches. We provide advanced treatments and patient
+          support for optimal outcomes.</p>
+        <button class="close-btn" onclick="closeModal('oncologyModal')">Cancel</button>
+      </div>
+    </div>
+
+    <div id="motherChildModal" class="modal">
+      <div class="modal-ld Care">
+        <h>Mother & Child Care</h>
+        <p>Complete maternal and pediatric care including prenatal services, safe delivery, and child wellness programs.
+        </p>
+        <button class="close-btn" onclick="closeModal('motherChildModal')">Cancel</button>
+      </div>
+    </div>
+
+    <section id="why-choose-us">
+      <div class="why-container">
+        <div class="why-image">
+          <img src="C:\Users\HP\Downloads\New folder\hospital.jpeg" alt="Medicare Hospital">
+        </div>
+        <div class="why-text">
+          <h2>Why You Choose <span class="highlight-hospital">Medicare Hospital</span></h2>
+          <p>
+            At <strong>Medicare Hospital</strong>, we provide <span class="highlight-text">world-class healthcare</span>
+            with a <span class="highlight-text">patient-first approach</span>. Our state-of-the-art facilities and
+            <strong>expert medical team</strong> ensure personalized and compassionate care for every patient.
+            We specialize in advanced treatments across multiple disciplines including <strong>Cardiology, Neurology,
+              Oncology, and Orthopedics</strong>,
+            and employ the latest technology for accurate diagnosis and effective treatment.
+            Our 24x7 emergency services, patient-centric amenities, and commitment to excellence make
+            <strong>Medicare Hospital</strong> the trusted choice for your healthcare needs.
+            Join thousands of patients who have experienced our <span class="highlight-text">safe, reliable, and
+              compassionate care</span>.
+          </p>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <section id="services-section" style="display: none;">
+    <h1 class="title">Hospital Management System - Services</h1>
+
+    <div class="services-container">
+      <div class="service-card">
+        <img src="C:\Users\HP\Downloads\New folder\concult.jpeg" alt="Online Consultation">
+        <h2>Online Consultation 💻👨‍⚕️</h2>
+        <p>Telemedicine service with secure video/audio consultations...</p>
+        <button onclick="openService('consultation')">Learn More</button>
+      </div>
+
+      <div class="service-card">
+        <img src="C:\Users\HP\Downloads\New folder\lab.jpeg" alt="Laboratory">
+        <h2>Laboratory & Diagnostics 🔬</h2>
+        <p>Comprehensive lab services including booking, sample collection...</p>
+        <button onclick="openService('laboratory')">Learn More</button>
+      </div>
+    </div>
+
+    <div id="service-modal" class="service-modal">
+      <div class="detail-content" id="consultation">
+        <h2>Online Consultation 💻👨‍⚕️</h2>
+        <label>Describe your problem or symptoms:</label><br>
+        <textarea id="problemDescription" rows="4" style="width:100%; padding:8px;"></textarea><br><br>
+        <button onclick="findDoctors()">Find Doctors</button>
+        <div id="doctorList" style="margin-top:20px;"></div>
+        <div id="timeSlotSection" style="margin-top:20px; display:none;">
+          <h3>Select a Time Slot</h3>
+          <div id="timeSlots"></div>
+          <button id="confirmAppointment">Confirm Appointment</button>
+        </div>
+        <div id="consultationRoom" style="margin-top:20px; display:none;">
+          <iframe id="jitsiFrame" src="" style="width:100%; height:400px; border:0;"
+            allow="camera; microphone"></iframe>
+          <button onclick="endConsultation()">End Consultation</button>
+        </div>
+        <button class="close-btn" onclick="closeService()">Close</button>
+      </div>
+
+      <div class="detail-content" id="laboratory">
+        <h2>Laboratory & Diagnostics 🔬</h2>
+        <label>Patient Name:</label><br>
+        <input type="text" id="labName"><br><br>
+        <label>Test Name:</label><br>
+        <input type="text" id="labTest"><br><br>
+        <label>Date:</label><br>
+        <input type="date" id="labDate"><br><br>
+        <button onclick="bookLabTest()">Book Test</button><br><br>
+        <h3>Status Tracker:</h3>
+        <ol id="labStatus">
+          <li>Booked ❌</li>
+          <li>Sample Collected ❌</li>
+          <li>Processing ❌</li>
+          <li>Report Ready ❌</li>
+        </ol>
+        <input type="file" id="labReport">
+        <button onclick="uploadReport()">Upload Report</button>
+        <button onclick="downloadReport()">Download Report</button>
+        <button class="close-btn" onclick="closeService()">Close</button>
+      </div>
+    </div>
+  </section>
+
+
+  <script src="./scripts/script.js"></script>
+
+</body>
+
+</html>

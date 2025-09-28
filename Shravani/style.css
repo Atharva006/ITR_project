@@ -1,0 +1,469 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f4f7fb;
+  overflow-x: hidden; /* Prevents horizontal scroll */
+}
+
+/* Top navbar */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #ffffff;
+  color: rgb(33, 43, 80);
+  padding: 12px 20px;
+}
+
+.portal-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: rgba(19, 52, 59, 1);
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.nav-links {
+  display: flex;
+  gap: 20px;
+  margin-left: auto;
+}
+
+.nav-links button {
+  background-color: #ffffff;
+  color: rgba(19, 52, 59, 1);
+  border: 2px solid rgba(94, 82, 64, 0.2);
+  padding: 8px 16px;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+.nav-links button:hover {
+  background-color: rgba(19, 52, 59, 1);
+  color: white;
+}
+
+/* Hamburger icon */
+.menu-icon {
+  font-size: 22px;
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-weight: bold;
+}
+
+
+/* Sidebar hidden by default */
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: -260px;   /* push it fully off-screen */
+  width: 250px;
+  height: 100%;
+  background-color: #e4e6f0;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  transition: right 0.3s ease;
+  z-index: 1000;
+  visibility: hidden;   /* completely hidden */
+  opacity: 0;           /* invisible */
+}
+
+/* Sidebar visible */
+.sidebar.active {
+  right: 0;
+  visibility: visible;  /* show */
+  opacity: 1;
+}
+
+
+/* Sidebar buttons */
+.sidebar button {
+  background: white;
+  color: #020c11;
+  border: 2px solid #1a4c67;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+.sidebar button:hover {
+  background: rgba(19, 52, 59, 1);
+  color: white;
+}
+
+/* Close button inside sidebar */
+.close-btn {
+  background: red;
+  color: white;
+  font-size: 18px;
+  border: none;
+  padding: 8px;
+  border-radius: 5px;
+  cursor: pointer;
+  align-self: flex-end;
+}
+
+/*google font import*/
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
+
+
+/* Hero Section */
+.hero-section {
+  padding: 60px 20px;
+  background-color: #fff; /* Light warm background */
+}
+
+.hero-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.hero-image {
+  flex: 1 1 500px;
+}
+
+.hero-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+.hero-text {
+  flex: 1 1 500px;
+}
+
+.hero-text h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: #13343b;
+}
+
+.hero-text h1 .highlight-hospital {
+  color: #13343b;
+}
+
+.hero-text p {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.2rem;
+  line-height: 1.8;
+  color: #13343b;
+}
+
+.hero-text p .highlight-text {
+  color: #13343b;
+  font-weight: 600;
+}
+
+.hero-text .cta-button a {
+  display: inline-block;
+  margin-top: 25px;
+  padding: 12px 30px;
+  background-color: #13343b;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  transition: background 0.3s ease;
+}
+
+.hero-text .cta-button a:hover {
+  background-color: #0056a1;
+}
+
+/* Responsive */
+@media screen and (max-width: 900px) {
+  .hero-container {
+    flex-direction: column;
+    text-align: center;
+  }
+  .hero-text h1 {
+    font-size: 2rem;
+  }
+  .hero-text p {
+    font-size: 1.1rem;
+  }
+}
+
+/* specialities section*/
+.specialities {text-align:center;padding:60px 20px;background:#f9f9f9;}
+.specialities h2 {font-size:2.5rem;margin-bottom:40px;color:#13343b;font-weight:600;}
+
+.speciality-grid {display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:25px;max-width:1200px;margin:0 auto;}
+
+.speciality-card {background:#fff;padding:20px;border-radius:15px;box-shadow:0 6px 15px rgba(0,0,0,0.1);transition:transform 0.3s ease,box-shadow 0.3s ease;display:flex;flex-direction:column;align-items:center;}
+.speciality-card img {width:100px;height:100px;object-fit:cover;border-radius:50%;margin-bottom:15px;}
+.speciality-card h3 {font-size:1.2rem;color:#13343b;margin-bottom:10px;}
+.speciality-card a {text-decoration:underline;color:#0074d9;font-weight:500;margin-top:10px;cursor:pointer;transition:color 0.3s ease;}
+.speciality-card a:hover {color:#0056a1;}
+.speciality-card:hover {transform:translateY(-5px);box-shadow:0 10px 25px rgba(0,0,0,0.15);}
+
+/* Modals */
+.modal {display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);justify-content:center;align-items:center;z-index:1000;}
+.modal-content {background:#fff;padding:30px;border-radius:10px;max-width:800px;width:90%;overflow-y:auto;text-align:left;position:relative;}
+.modal-content img {width:100%;border-radius:10px;margin-bottom:15px;}
+.modal-content h3 {margin-top:10px;color:#0074d9;font-size:1.6rem;}
+.modal-content p {margin-top:10px;color:#555;font-size:1rem;}
+.modal-content .close-btn {display:inline-block;margin-top:20px;padding:10px 20px;background:#0074d9;color:#fff;border:none;border-radius:8px;cursor:pointer;transition:background 0.3s ease;}
+.modal-content .close-btn:hover {background:#0056a1;}
+
+/* Why You Choose Medicare Hospital Section */
+#why-choose-us {
+  padding: 60px 20px;
+  background-color: #fff;
+}
+
+.why-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.why-image {
+  flex: 1 1 500px;
+}
+
+.why-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+.why-text {
+  flex: 1 1 500px;
+}
+
+.why-text h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: #444;
+}
+
+.why-text h2 .highlight-hospital {
+  color: #13343b;
+}
+
+.why-text p {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.2rem;
+  line-height: 1.8;
+  color: #13343b;
+}
+
+.why-text p .highlight-text {
+  color: #13343b;
+  font-weight: 600;
+}
+h1.title {
+  text-align: center;
+  margin: 30px 0;
+  font-size: 32px;
+  color: #1a4c67;
+}
+
+/* Styles from hmsservices.css */
+
+h1.title {
+  text-align: center;
+  margin: 30px 0;
+  font-size: 32px;
+  color: #1a4c67;
+}
+
+/* Services container */
+.services-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 25px;
+  padding: 0 20px 50px 20px;
+}
+
+/* Service card styling */
+.service-card {
+  background: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  max-width: 700px;
+  width: 100%;
+  padding: 20px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.service-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+.service-card img {
+  width: 25%;
+  max-height: 250px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 15px;
+}
+.service-card h2 { margin-bottom: 10px; font-size: 24px; }
+.service-card p { font-size: 16px; line-height: 1.5; margin-bottom: 15px; }
+.service-card button {
+  padding: 10px 18px;
+  background-color: #1a4c67;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: 0.3s;
+}
+.service-card button:hover { background-color: #16394f; }
+
+/* Modal wrapper */
+.service-modal {
+  display: none; /* hidden by default */
+  position: fixed;
+  top:0; left:0; right:0; bottom:0;
+  background: rgba(0,0,0,0.7);
+  justify-content: center;
+  align-items: center;
+  overflow-y: auto;
+  padding: 20px;
+  z-index: 1000;
+}
+
+/* Service detail screens */
+.detail-content {
+  background: #fff;
+  border-radius: 15px;
+  padding: 25px;
+  max-width: 800px;
+  width: 100%;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+  display: none; /* hidden by default */
+}
+
+/* Close button */
+.detail-content button.close-btn {
+  margin-top: 15px;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: #1a4c67;
+  color: #fff;
+  font-size: 14px;
+}
+.detail-content button.close-btn:hover { background-color: #16394f; }
+
+/* Inputs and selects */
+.detail-content input[type="text"],
+.detail-content input[type="number"],
+.detail-content input[type="date"],
+.detail-content select,
+.detail-content textarea {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  margin-bottom: 15px;
+  font-size: 14px;
+}
+
+/* Doctor cards */
+.doctor-card {
+  background: #e6f0f5;
+  color: #1a4c67;
+  border-radius: 12px;
+  padding: 15px;
+  margin-bottom: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: 0.3s;
+}
+.doctor-card:hover { background: #d0e2ec; }
+.doctor-card button {
+  background: #1a4c67;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+.doctor-card button:hover { background: #16394f; }
+
+/* Time slots */
+#timeSlots button {
+  background: #eee;
+  color: #1a4c67;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 12px;
+  margin: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+#timeSlots button:hover {
+  background: #1a4c67;
+  color: #fff;
+}
+
+/* Pharmacy table */
+#medicineTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 15px;
+}
+#medicineTable th, #medicineTable td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: center;
+}
+#medicineTable th {
+  background: #1a4c67;
+  color: #fff;
+}
+#medicineTable button {
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: none;
+  background: #1a4c67;
+  color: #fff;
+  cursor: pointer;
+}
+#medicineTable button:hover { background: #16394f; }
+
+/* Laboratory Status Tracker */
+#labStatus { list-style: none; padding-left: 0; }
+#labStatus li {
+  background: #e6f0f5;
+  color: #1a4c67;
+  margin-bottom: 8px;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+/* Jitsi iframe */
+#jitsiFrame { border-radius: 12px; }
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .service-card, .detail-content { padding: 15px; }
+  #medicineTable th, #medicineTable td { font-size: 12px; padding: 6px; }
+  .doctor-card { flex-direction: column; align-items: flex-start; }
+  .doctor-card button { margin-top: 8px; }
+}
