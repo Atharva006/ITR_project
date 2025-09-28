@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // ---- CONFIG ----
     // Ensure json-server is running on localhost:3000
     // Command: json-server --watch db.json
-    const API_BASE = "http://localhost:3000"; // Change to your ngrok URL or localhost URL
+    const API_BASE = "https://char-bet-rat-proc.trycloudflare.com"; // Change to your ngrok URL or localhost URL
 
     // ---- DOM REFS ----
     const navBtns = document.querySelectorAll("nav button");
