@@ -1,15 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Telehealth Portal</title>
     <style>
-#local-video {
-    transform: scaleX(-1);
-}
-        body { font-family: sans-serif; background-color: #f0f4f8; text-align: center; }
-        h1 { color: #2c3e50; }
+        #local-video {
+            transform: scaleX(-1);
+        }
+
+        body {
+            font-family: sans-serif;
+            background-color: #f0f4f8;
+            text-align: center;
+        }
+
+        h1 {
+            color: #2c3e50;
+        }
+
         #video-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
@@ -17,6 +27,7 @@
             max-width: 900px;
             margin: 1rem auto;
         }
+
         video {
             width: 100%;
             height: auto;
@@ -24,19 +35,47 @@
             border-radius: 8px;
             background-color: #000;
         }
-        .video-container { text-align: center; }
-        #controls { margin-top: 1rem; }
-        input { padding: 8px; border-radius: 4px; border: 1px solid #ccc; }
-        button { padding: 8px 15px; background-color: #3498db; color: white; border: none; border-radius: 4px; cursor: pointer; }
-        button:hover { background-color: #2980b9; }
-        #my-id { font-weight: bold; color: #e74c3c; }
+
+        .video-container {
+            text-align: center;
+        }
+
+        #controls {
+            margin-top: 1rem;
+        }
+
+        input {
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            padding: 8px 15px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        #my-id {
+            font-weight: bold;
+            color: #e74c3c;
+        }
     </style>
 </head>
+
 <body>
 
     <h1>Telehealth Appointment</h1>
     <p>Your Appointment ID is: <span id="my-id">loading...</span></p>
     <p>Share this ID with the other person.</p>
+    <p>Enter (111 111 111) or (222 222 222) below to connect with host</p>
 
     <div id="video-grid">
         <div class="video-container">
@@ -58,4 +97,5 @@
     <script src="script.js"></script>
 
 </body>
+
 </html>
