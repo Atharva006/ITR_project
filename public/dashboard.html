@@ -26,6 +26,7 @@
         <button data-target="billing-section" class="btn btn--secondary">Billing</button>
         <button data-target="records-section" class="btn btn--secondary">Records</button>
         <button data-target="telehealth-section" class="btn btn--secondary">TeleHealth</button>
+        <button data-target="notifications-section" class="btn btn--secondary">Notifications</button>
         <button data-target="about-us-section" class="btn btn--secondary">About Us</button>
       </nav>
     </header>
@@ -271,7 +272,7 @@
         <div id="recordsContainer">
         </div>
       </div>
-      
+
       <div id="telehealth-section" class="section">
         <h1>TeleHealth Appointments</h1>
         <p class="text-secondary mb-24">Conduct and manage telehealth appointments with patients remotely.</p>
@@ -279,7 +280,7 @@
           <div class="card__body
             p-0">
             <table id="telehealthTable">
-              <thead> 
+              <thead>
                 <tr>
                   <th>Patient Name</th>
                   <th>Doctor Name</th>
@@ -290,7 +291,29 @@
                 </tr>
               </thead>
               <tbody>
-           
+
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div id="notifications-section" class="section">
+        <h1>Patient Admission Requests</h1>
+        <div class="card">
+          <div class="card__body p-0">
+            <table id="requestTable" style="width:100%;">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Age</th>
+                  <th>Gender</th>
+                  <th>Phone</th>
+                  <th>Diagnosis</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+              </tbody>
             </table>
           </div>
         </div>

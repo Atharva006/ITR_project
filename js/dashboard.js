@@ -2,9 +2,10 @@ document.addEventListener("DOMContentLoaded", () => {
     // ---- CONFIG ----
     // Ensure json-server is running on localhost:3000
     // Command: json-server --watch db.json
-    const API_BASE = "https://char-bet-rat-proc.trycloudflare.com"; // Change to your ngrok URL or localhost URL
-
-    // ---- DOM REFS ----
+    const API_BASE = "http://localhost:3000"; // Change to your ngrok URL or localhost URL
+   // const API_BASE = "http://localhost:3000"; //URL for local testing
+    
+   // ---- DOM REFS ----
     const navBtns = document.querySelectorAll("nav button");
     const sections = document.querySelectorAll("main > .section");
 
@@ -15,6 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const appointmentTableBody = document.querySelector("#appointmentTable tbody");
     const billingTableBody = document.querySelector("#billingTable tbody");
     const telehealthTableBody = document.querySelector("#telehealthTable tbody");
+    const requestTableBody = document.querySelector("#requestTable tbody");
 
     // Forms & Containers
     const showPatientFormBtn = document.getElementById("showPatientFormBtn");
@@ -82,6 +84,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(body)
+        });
+    }
+    async function apiDelete(path) {
+        return apiFetch(path, {
+            method: "DELETE"
         });
     }
 
@@ -198,6 +205,50 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    function renderRequests(requests) {
+        requestTableBody.innerHTML = "";
+        requests.forEach(r => {
+            const row = requestTableBody.insertRow();
+            row.insertCell(0).innerText = r.name || "";
+            row.insertCell(1).innerText = r.age || "";
+            row.insertCell(2).innerText = r.gender || "";
+            row.insertCell(3).innerText = r.phone || "";
+            row.insertCell(4).innerText = r.diagnosis || "N/A";
+
+            const actionsCell = row.insertCell(5);
+
+            const admitBtn = document.createElement("button");
+            admitBtn.className = "btn btn--sm btn--success";
+            admitBtn.innerText = "Admit";
+            admitBtn.onclick = async () => {
+                try {
+                    await apiPost("/patients", { ...r, id: undefined }); // Admit patient
+                    await apiDelete(`/requests/${r.id}`); // Remove request
+                    loadAndRenderData();
+                } catch (err) {
+                    alert("Failed to admit patient.");
+                }
+            };
+
+            const denyBtn = document.createElement("button");
+denyBtn.className = "btn btn--sm btn--error"; // Use a class for error/deny buttons
+denyBtn.innerText = "Deny";
+denyBtn.style.marginLeft = "8px";
+denyBtn.onclick = async () => {
+    try {
+        await apiDelete(`/requests/${r.id}`); // Just delete the request
+        loadAndRenderData();
+    } catch (err) {
+        alert("Failed to deny request.");
+    }
+};
+
+
+            actionsCell.appendChild(admitBtn);
+            actionsCell.appendChild(denyBtn);
+        });
+    }
+
     function renderRecords(patients) {
         recordsContainer.innerHTML = "";
         const patientsWithReports = patients.filter(p => p.reportData);
@@ -266,18 +317,20 @@ document.addEventListener("DOMContentLoaded", () => {
     // ---- MAIN DATA HANDLER ----
     async function loadAndRenderData() {
         try {
-            const [patients, doctors, appointments] = await Promise.all([
-                apiFetch("/patients"),
-                apiFetch("/doctors"),
-                apiFetch("/appointments")
-            ]);
+            const [patients, doctors, appointments, requests] = await Promise.all([
+    apiFetch("/patients"),
+    apiFetch("/doctors"),
+    apiFetch("/appointments"),
+    apiFetch("/requests") // Fetch requests
+]);
             renderDashboardStats(patients, doctors, appointments);
             renderPatients(patients);
             renderDoctors(doctors);
             renderAppointments(appointments);
             renderBilling(patients);
             renderRecords(patients);
-            renderTeleHealth(appointments); // <-- Renders TeleHealth Appointments
+            renderTeleHealth(appointments);
+            renderRequests(requests);
         } catch (err) {
             console.error("Failed to load and render initial data.", err);
         }
@@ -343,6 +396,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 createdAt: new Date().toISOString()
             };
             await apiPost("/patients", patientObj);
+            await apiPost("/requests", patientObj);
             patientForm.reset();
             patientFormContainer.style.display = "none";
             loadAndRenderData();
